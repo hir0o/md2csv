@@ -50,7 +50,7 @@ function exportCSV(content) {
     }
     formatCSV += "\n";
   }
-  fs.writeFile("formList.csv", formatCSV, "utf8", function (err) {
+  fs.writeFile("cource.csv", formatCSV, "utf8", function (err) {
     if (err) {
       console.log("保存できませんでした");
     } else {
