@@ -15,10 +15,12 @@ const sliceChapter = text.split("---").map((t, i) => {
 const sliceQuiz = sliceChapter.map(chapter =>  {
   // タイトルを取得
   const title = chapter[0].match(/#{2} .+/)[0].replace("## ", "")
+  // bodyを取得
+  const body = chapter[0].replace(/(#{2} .+)/, "").split(/(#{3} 問題)/)[0].replace(/^\s+|\s+$/g, '');
   // 問題文を取得
-  const quizBody = chapter[0].replace(/(#{2} .+)/, "").split(/(#{3} 問題)/)[2].split('- [')[0]
+  const quizBody = chapter[0].replace(/(#{2} .+)/, "").split(/(#{3} 問題)/)[2].split('- [')[0].replace(/^\s+|\s+$/g, '');
   // 解説を取得
-  const commentary = chapter[0].replace(/(#{2} .+)/, "").split(/(#{3} 解説)/)[2]
+  const commentary = chapter[0].replace(/(#{2} .+)/, "").split(/(#{3} 解説)/)[2].replace(/^\s+|\s+$/g, '');
   // 選択肢を配列で取得
   const quizChoices = []
   chapter[0].match(/(- \[( |x)\] .+\n)/g).forEach(choice => {
@@ -27,8 +29,7 @@ const sliceQuiz = sliceChapter.map(chapter =>  {
     quizChoiceText = choiceSplit[2]
     quizChoices.push(quizChoiceText, isCorrect)
   })
-  // bodyだけを取得
-  const body = chapter[0].replace(/(#{2} .+)/, "").split(/(#{3} 問題)/)[0]
+
   return [title, body, quizBody, commentary, ...quizChoices]
 })
 
