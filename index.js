@@ -5,11 +5,9 @@ let text = fs.readFileSync("test.md", 'utf-8');
 
 //*   ["タイトル", "本文", "クイズ内容", "クイズ解説", "選択肢1", "正解かどうか", "選択肢2", "正解かどうか", "選択肢3", "正解かどうか", "選択肢4", "正解かどうか"]
 
-const sliceChapter = text.split("---").map((t, i) => {
-  if (i > 0) {
-    return [t.slice(1,-1)]
-  }
-  return [t.slice(0,-1)]
+// レッスンごとに分割
+const sliceChapter = text.split("---").map(t => {
+  return [t.replace(/^\s+|\s+$/g, '')]
 });
 
 const sliceQuiz = sliceChapter.map(chapter =>  {
