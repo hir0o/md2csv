@@ -18,7 +18,7 @@ filePaths.forEach((filePath) => {
     }
     sliceChapter.push(
       lesson
-        .replace(/<!-- ?\r?\n?＠TODO\r?\n([\s\S]+?)\r?\n?-->/g, "") // @TODOを削除
+        .replace(/<!-- ?\r?\n?＠TODO\r?\n([\s\S]+?)\r?\n?-->/g, "")
         .replace(/^\s+|\s+$/g, "")
     );
   });
@@ -53,8 +53,8 @@ filePaths.forEach((filePath) => {
     const quizChoices = [];
     chapter.match(/(- \[( |x)\] .+\n)/g).forEach((choice) => {
       const choiceSplit = choice.replace("\n", "").split(/(- \[ ?x?\])/);
-      isCorrect = choiceSplit[1].includes("x");
-      quizChoiceText = choiceSplit[2];
+      const isCorrect = choiceSplit[1].includes("x");
+      const quizChoiceText = choiceSplit[2];
       quizChoices.push(quizChoiceText, isCorrect);
     });
     lessons.push([
