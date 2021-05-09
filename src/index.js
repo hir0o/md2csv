@@ -1,3 +1,5 @@
+#! /usr/bin/env node
+
 const fs = require("fs");
 const { listFiles } = require("./lib/listFiles");
 const { exportCSV } = require("./lib/exportCSV");
