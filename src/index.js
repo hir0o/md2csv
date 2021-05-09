@@ -7,7 +7,22 @@ const { exportCSV } = require("./lib/exportCSV");
 const csvFileName = "course.csv";
 const filePaths = listFiles(process.argv[0]);
 
-const lessons = [];
+const lessons = [
+  [
+    "タイトル",
+    "本文",
+    "クイズ内容",
+    "クイズ解説",
+    "選択肢1",
+    "正解かどうか",
+    "選択肢2",
+    "正解かどうか",
+    "選択肢3",
+    "正解かどうか",
+    "選択肢4",
+    "正解かどうか",
+  ],
+];
 
 filePaths.forEach((filePath) => {
   let file = fs.readFileSync(filePath, "utf-8");
