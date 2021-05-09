@@ -5,7 +5,7 @@ const { listFiles } = require("./lib/listFiles");
 const { exportCSV } = require("./lib/exportCSV");
 
 const csvFileName = "course.csv";
-const filePaths = listFiles("Pythonを始めよう");
+const filePaths = listFiles(process.argv[0]);
 
 const lessons = [];
 
