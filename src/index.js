@@ -94,8 +94,10 @@ filePaths.forEach((filePath) => {
             const quizChoiceText = choiceSplit[2];
             quizChoices.push(quizChoiceText, isCorrect);
           });
-          if (textType === "s") {
-            csv.push([quizBody, commentary, ...quizChoices]);
+          if (textType === "q") {
+            if (quizBody !== "なし") {
+              csv.push([quizBody, commentary, ...quizChoices]);
+            }
           } else {
             csv.push([
               title,
@@ -119,7 +121,7 @@ filePaths.forEach((filePath) => {
 });
 
 if (!isError) {
-  if (textType === "s") {
+  if (textType === "q") {
     const arr = shuffle(csv);
     arr.unshift([
       "クイズ内容",
@@ -135,8 +137,7 @@ if (!isError) {
     ]);
     exportCSV(arr, csvFileName);
   } else {
-    const arr = shuffle(csv);
-    arr.unshift([
+    csv.unshift([
       "タイトル",
       "概要",
       "経験値",
@@ -152,6 +153,6 @@ if (!isError) {
       "選択肢4",
       "正解かどうか",
     ]);
-    exportCSV(arr, csvFileName);
+    exportCSV(csv, csvFileName);
   }
 }
